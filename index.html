@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You, My Chinnari ❤️</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body {
+      margin: 0;
+      background: linear-gradient(45deg, #6a9cfb, #7de5d1, #f5f7dc, #d1b2ff);
+      color: #2c3e50;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    section {
+      min-height: 100vh;
+      padding: 60px 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 2s ease;
+    }
+    h1 { font-size: 2.5em; margin-bottom: 10px; color: #1b1b2f; }
+    h2 { font-weight: 300; font-size: 1.3em; color: #1b1b2f; }
+    p {
+      max-width: 90%;
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 15px 0;
+      color: #1b1b2f;
+    }
+    .heart {
+      font-size: 50px;
+      animation: heartbeat 1.4s infinite;
+      margin-bottom: 15px;
+    }
+    button {
+      background: white;
+      color: #4d4dff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 35px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .floating-hearts span {
+      position: fixed;
+      bottom: -20px;
+      font-size: 18px;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.7;
+    }
+    .page2 { display: none; }
+    .question-card {
+      background: rgba(255,255,255,0.15);
+      padding: 25px;
+      border-radius: 18px;
+      margin-top: 25px;
+      max-width: 90%;
+      animation: slideUp 1.5s ease;
+      position: relative;
+    }
+    #secretMsg { display: none; margin-top: 12px; font-size: 1em; color: #1b1b2f; }
+    .elephant {
+      font-size: 60px;
+      animation: jump 1s infinite;
+      margin: 8px;
+    }
+
+    /* Modal Styles */
+    #popupModal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      z-index: 100;
+      text-align: center;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    #popupModal.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    #popupModal h2 {
+      margin: 0 0 15px 0;
+      color: #4d4dff;
+    }
+    #popupModal button {
+      margin-top: 20px;
+    }
+
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes floatUp { from { transform: translateY(0); } to { transform: translateY(-110vh); } }
+    @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes jump { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.1em; }
+      .heart { font-size: 40px; }
+      button { padding: 10px 20px; font-size: 0.95em; }
+      .elephant { font-size: 50px; }
+      #popupModal { padding: 20px; max-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Rest of your content -->
+  <div class="floating-hearts">...</div>
+  <section class="page1">...</section>
+<div class="floating-hearts">
+  <span style="left:10%">❤️</span>
+  <span style="left:30%; animation-delay:2s">💖</span>
+  <span style="left:50%; animation-delay:4s">💕</span>
+  <span style="left:70%; animation-delay:1s">💘</span>
+  <span style="left:90%; animation-delay:3s">❤️</span>
+</div>
+
+<section class="page1" id="page1">
+  <div class="heart">❤️</div>
+  <h1>Hooiiii nannaa</h1>
+  <h2>This page is made with atmost love nanna.✨</h2>
+  <p>
+    Somewhere between your gentle smile, and care 
+    I unknowingly gave you my heart nanna.
+  </p>
+
+  <div class="question-card">
+    <h3>Will you be my Valentine this year??? 😏</h3>
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 😅</button>
+  </div>
+
+  <div class="question-card">
+    <h3>Want to know a secret? 💌</h3>
+    <button onclick="document.getElementById('secretMsg').style.display='block'; this.style.display='none';">Click me to know a secret</button>
+    <p id="secretMsg">I love you more than you know and I admire you a lot nanna! 💖</p>
+  </div>
+
+  <button onclick="goNext()">Turn the Page 💌</button>
+</section>
+
+<section class="page2" id="page2">
+  <div style="display:flex; justify-content:center; flex-wrap:wrap;">
+    <div class="elephant">🐘</div>
+    <div class="elephant">🐘</div>
+    <div class="elephant">🐘</div>
+    <div class="elephant">🐘</div>
+  </div>
+  <h1>A little message for  YOU</h1>
+  <p>
+    I know I annoy you a lot. I know I make you go mad for the things I do. I am so sorry for everything I did. I just love you and  want us to stay together till the death decides to go apart. I just love you nanna. Today, tomorrow and for all upcoming days I will love even more nanna.  
+    I promise to stand by you at  all the times you need me. 
+  </p>
+  <p>
+    To the man who owns my heart without even trying. To the man who loves me unconditionally. To the man i always be grateful for. I am yours..completely..! 💍
+  </p>
+  <h2>Forever yours,<br>Somu 🤍</h2>
+</section>
+
+<!-- Popup Modal -->
+<div id="popupModal">
+  <h2>Yay!  good boyyyyyyyy💖</h2>
+  <button onclick="closePopup()">Close 💌</button>
+</div>
+
+<script>
+  function goNext() {
+    document.getElementById('page1').style.display = 'none';
+    document.getElementById('page2').style.display = 'flex';
+  }
+
+  // NO button roaming (desktop + mobile)
+  const noBtn = document.getElementById('noBtn');
+
+  function moveNoButton() {
+    const padding = 10;
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const maxX = window.innerWidth - btnWidth - padding;
+    const maxY = window.innerHeight - btnHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.transition = 'all 0.5s ease';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  }
+
+  noBtn.addEventListener('mouseenter', moveNoButton); // Desktop hover
+  noBtn.addEventListener('touchstart', moveNoButton); // Mobile tap
+
+  // YES button popup
+  const yesBtn = document.getElementById('yesBtn');
+  const popup = document.getElementById('popupModal');
+
+  yesBtn.addEventListener('click', () => {
+    popup.classList.add('show');
+  });
+
+  function closePopup() {
+    popup.classList.remove('show');
+  }
+</script>
+
+</body>
+</html>
